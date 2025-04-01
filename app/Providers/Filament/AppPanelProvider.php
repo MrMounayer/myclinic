@@ -26,7 +26,8 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('app')
             ->login()
-            ->profile()
+            ->profile() 
+            ->unsavedChangesAlerts()
             ->colors([
                 'primary' => Color::Amber,
             ])

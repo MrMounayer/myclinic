@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Clinic;
+use App\Models\Doctor;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +21,8 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->foreignIdFor(Clinic::class);
+            $table->foreignIdFor(Clinic::class)->constrained();
+            $table->foreignIdFor(Doctor::class)->constrained();
         });
     }
 
