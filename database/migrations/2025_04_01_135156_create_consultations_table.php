@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Patient::class)->constrained();
             $table->foreignIdFor(Doctor::class)->constrained();
             $table->foreignIdFor(Clinic::class)->constrained();
+            $table->json("treatement");
         });
     }
 

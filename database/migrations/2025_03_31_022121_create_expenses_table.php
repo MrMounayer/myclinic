@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(Clinic::class)->constrained();
-            $table->foreignIdFor(Doctor::class)->constrained();
             $table->date('date');
+            $table->string('description');
+            $table->decimal('amount', 10, 2);
 
         });
     }

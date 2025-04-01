@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->foreignIdFor(Clinic::class)->constrained();
-            $table->string('role')->nullable();
         });
     }
 

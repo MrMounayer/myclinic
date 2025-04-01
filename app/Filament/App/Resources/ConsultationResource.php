@@ -2,9 +2,9 @@
 
 namespace App\Filament\App\Resources;
 
-use App\Filament\App\Resources\TreatementResource\Pages;
-use App\Filament\App\Resources\TreatementResource\RelationManagers;
-use App\Models\Treatement;
+use App\Filament\App\Resources\ConsultationResource\Pages;
+use App\Filament\App\Resources\ConsultationResource\RelationManagers;
+use App\Models\Consultation;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,20 +13,33 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TreatementResource extends Resource
+class ConsultationResource extends Resource
 {
-    protected static ?string $model = Treatement::class;
+    protected static ?string $model = Consultation::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $label = "Traitement";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('patient_id')
+                ->options(
+                    \App\Models\Patient::all()->pluck('full_name', 'id')
+                    )->searchable()
+                    ->label('Patient')
+                    ->required(),
                 Forms\Components\DatePicker::make('date')
+                    ->default(today())
+                    ->required(),
+                Forms\Components\Repeater::make('treatement')
+                    ->schema([
+                        Forms\Components\TextInput::make("description")
+                            ->required()
+                            ->label("Description"),
+                    ])
                     ->required()
-                    ->default(today()),
-                
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -42,11 +55,17 @@ class TreatementResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('date')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('patient_id')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('doctor_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('date')
-                    ->date()
+                Tables\Columns\TextColumn::make('clinic_id')
+                    ->numeric()
                     ->sortable(),
             ])
             ->filters([
@@ -72,9 +91,9 @@ class TreatementResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTreatements::route('/'),
-            'create' => Pages\CreateTreatement::route('/create'),
-            'edit' => Pages\EditTreatement::route('/{record}/edit'),
+            'index' => Pages\ListConsultations::route('/'),
+            'create' => Pages\CreateConsultation::route('/create'),
+            'edit' => Pages\EditConsultation::route('/{record}/edit'),
         ];
     }
 }

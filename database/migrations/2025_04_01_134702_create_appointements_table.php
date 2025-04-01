@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Clinic;
-use App\Models\Patient;
+use App\Models\{Clinic, Doctor,Patient};
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,6 +17,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignIdFor(Patient::class)->constrained();
             $table->foreignIdFor(Clinic::class)->constrained();
+            $table->foreignIdFor(Doctor::class)->constrained();
             $table->string('cancel_reason')->nullable();
             $table->string('status')->default('pending'); // pending, confirmed, cancelled  
             $table->dateTime('date');
