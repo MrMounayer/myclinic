@@ -28,14 +28,23 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required(),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required(),
-                Forms\Components\TextInput::make('clinic_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('user_type')
-                    ->required(),
+                Forms\Components\Select::make('user_type')
+                    ->required()
+                    ->default("doctor")
+                    ->options([
+                        'admin' => 'Admin',
+                        'doctor' => 'Doctor',
+                        'assistant' => 'Assistant',
+                    ]),
+                // TODO : Make the field visible or not depending on user type value
+                Forms\Components\Select::make('clinic_id')
+                    ->options(
+                        \App\Models\Clinic::all()->pluck('name', 'id')
+                    )->searchable()
+                    ->label('Clinic'),
             ]);
     }
 
