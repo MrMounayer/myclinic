@@ -23,7 +23,25 @@ class PayementResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('patient_id')
+                ->options(
+                    \App\Models\Patient::all()->pluck('full_name', 'id')
+                    )->searchable()
+                    ->label('Patient')
+                    ->required(),
+                Forms\Components\DatePicker::make('date')
+                    ->required(),
+                    Forms\Components\TextInput::make('amount')
+                    ->label("Montant")
+                    ->required(),
+                    Forms\Components\Select::make('method')
+                    ->default(1)
+                    ->options([
+                        "Cheque",
+                        "Liquide",
+                        ])
+                        ->required(),
+                    Forms\Components\TextInput::make('note')->label("Remarque"),
             ]);
     }
 
@@ -31,7 +49,32 @@ class PayementResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('patient_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('clinic_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('date')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('amount')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('method')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->searchable(),
             ])
             ->filters([
                 //

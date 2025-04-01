@@ -18,10 +18,9 @@ return new class extends Migration
             $table->foreignIdFor(Patient::class)->constrained();
             $table->foreignIdFor(Clinic::class)->constrained();
             $table->date('date');
-            $table->string('description')->nullable();
             $table->decimal('amount', 10, 2);
-            $table->string('method')->default('cash'); // cash, credit_card, bank_transfer
-            $table->string('status')->default('completed'); // completed, pending, failed
+            $table->string('method')->default('cash'); // cash, credit_card, bank_transfer // completed, pending, failed
+            $table->string('note')->nullable();
 
         });
     }

@@ -18,7 +18,8 @@ class ExpenseResource extends Resource
     protected static ?string $model = Expense::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $label = "Dépense";
+
+    protected static ?string $label = "Depense";
     public static function form(Form $form): Form
     {
         return $form
@@ -26,6 +27,11 @@ class ExpenseResource extends Resource
                 Forms\Components\DatePicker::make('date')
                     ->default(today())
                     ->required(),
+                Forms\Components\TextInput::make('description')
+                    ->required(),
+                Forms\Components\TextInput::make('amount')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 
@@ -44,11 +50,13 @@ class ExpenseResource extends Resource
                 Tables\Columns\TextColumn::make('clinic_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('doctor_id')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('date')
                     ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('amount')
+                    ->numeric()
                     ->sortable(),
             ])
             ->filters([

@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Awcodes\TableRepeater\Components\TableRepeater;
+use Awcodes\TableRepeater\Header;
 
 class ConsultationResource extends Resource
 {
@@ -32,7 +34,12 @@ class ConsultationResource extends Resource
                 Forms\Components\DatePicker::make('date')
                     ->default(today())
                     ->required(),
-                Forms\Components\Repeater::make('treatement')
+                TableRepeater::make('treatement')
+                    ->label("Traitement")
+                    ->headers([
+                        Header::make("description")
+                        ->label("Description")
+                    ])
                     ->schema([
                         Forms\Components\TextInput::make("description")
                             ->required()
