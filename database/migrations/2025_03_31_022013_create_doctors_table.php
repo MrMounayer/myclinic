@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('full_name');
-            $table->string('specialization');
+            $table->string('specialization')->default('generaliste');
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
             $table->foreignIdFor(Clinic::class)->constrained();

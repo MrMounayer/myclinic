@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('gps_coordinates')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('state')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->date("active_until");
         });
     }
 
