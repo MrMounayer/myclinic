@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use App\Observers\PayementObserver;
 
 
-#ObservedBy([PayementObserver::class])
+#[ObservedBy([PayementObserver::class])]
 class Payement extends Model
 {
     //

@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\{Payement, User};
+use App\Models\{Payement};
 
 class PayementObserver
 {
@@ -11,9 +11,9 @@ class PayementObserver
      */
     public function creating(Payement $payement): void
     {
-        dd("hello from observer");
-        
-        User $user = auth()->user();
+        // dd("hello from observer");
+
+        $user = auth()->user();
 
         if($user && $user->clinic_id) {
             $payement->clinic_id = $user->clinic_id;
