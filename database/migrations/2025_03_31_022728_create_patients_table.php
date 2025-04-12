@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->foreignIdFor(Clinic::class)->constrained();
-            $table->foreignIdFor(Doctor::class)->constrained();
+            $table->foreignIdFor(Clinic::class);
+        $table->foreignIdFor(Doctor::class);
         });
     }
 

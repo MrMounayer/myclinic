@@ -30,6 +30,7 @@ class ExpenseResource extends Resource
                 Forms\Components\TextInput::make('description')
                     ->required(),
                 Forms\Components\TextInput::make('amount')
+                    ->label('Montant')
                     ->required()
                     ->numeric(),
             ]);
@@ -47,16 +48,14 @@ class ExpenseResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('clinic_id')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('date')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('amount')
-                    ->numeric()
+                    ->label('Montant')
+                    ->money("DZD")
                     ->sortable(),
             ])
             ->filters([

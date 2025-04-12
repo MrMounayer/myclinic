@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum UserType
 {
-    case ADMIN;
+    case ADMIN ;
     case DOCTOR;
     case ASSISTANT;
 

@@ -23,6 +23,8 @@ class User extends Authenticatable implements FilamentUser
     protected $fillable = [
         'name',
         'email',
+        'clinic_id',
+        'user_type',
         'password',
     ];
 
@@ -52,6 +54,16 @@ class User extends Authenticatable implements FilamentUser
         }
         return false;
     }
+
+    public function clinic()
+    {
+        return $this->belongsTo(Clinic::class);
+    }
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
+
     protected function casts(): array
     {
         return [

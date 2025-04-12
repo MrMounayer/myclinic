@@ -30,6 +30,7 @@ class PayementResource extends Resource
                     ->label('Patient')
                     ->required(),
                 Forms\Components\DatePicker::make('date')
+                    ->default(today())
                     ->required(),
                     Forms\Components\TextInput::make('amount')
                     ->label("Montant")

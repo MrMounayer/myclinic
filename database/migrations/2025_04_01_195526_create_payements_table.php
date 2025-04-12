@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('payements', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(Patient::class)->constrained();
-            $table->foreignIdFor(Clinic::class)->constrained();
+            $table->foreignIdFor(Patient::class);
+            $table->foreignIdFor(Clinic::class);
             $table->date('date');
             $table->decimal('amount', 10, 2);
             $table->string('method')->default('cash'); // cash, credit_card, bank_transfer // completed, pending, failed

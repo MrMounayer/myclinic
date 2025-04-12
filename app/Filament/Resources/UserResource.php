@@ -10,8 +10,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
@@ -35,7 +33,6 @@ class UserResource extends Resource
                     ->required()
                     ->default("doctor")
                     ->options([
-                        'admin' => 'Admin',
                         'doctor' => 'Doctor',
                         'assistant' => 'Assistant',
                     ]),
