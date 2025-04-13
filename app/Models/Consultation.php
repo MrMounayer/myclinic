@@ -31,12 +31,12 @@ class Consultation extends Model
     {
         return $this->belongsTo(Patient::class);
     }
-    public function doctor()
-    {
-        return $this->belongsTo(User::class, 'doctor_id');
-    }
-    public function clinic()
-    {
-        return $this->belongsTo(Clinic::class);
-    }
+    // public function doctor()
+    // {
+    //     return $this->belongsTo(User::class, 'doctor_id');
+    // }
+    // public function clinic()
+    // {
+    //     return $this->belongsTo(Clinic::class);
+    // }
 }

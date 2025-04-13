@@ -65,13 +65,7 @@ class ConsultationResource extends Resource
                 Tables\Columns\TextColumn::make('date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('patient_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('doctor_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('clinic_id')
+                Tables\Columns\TextColumn::make('patient.full_name')
                     ->numeric()
                     ->sortable(),
             ])
