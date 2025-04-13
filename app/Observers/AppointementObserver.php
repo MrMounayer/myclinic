@@ -6,6 +6,17 @@ use App\Models\Appointement;
 
 class AppointementObserver
 {
+    public function creating(Appointement $appointement) : void
+    {
+         // Get the authenticated user
+         $user = auth()->user();
+        
+         // Set the clinic_id if user has a clinic
+         if ($user && $user->clinic_id) {
+            //  $appointement->clinic_id = $user->clinic_id;
+            //  $appointement->doctor_id = $user->id;
+         }
+    }
     /**
      * Handle the Appointement "created" event.
      */

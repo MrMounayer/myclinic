@@ -51,30 +51,25 @@ class AppointementResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('patient_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('clinic_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('doctor_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('cancel_reason')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('date')
                     ->dateTime()
                     ->sortable(),
+                    Tables\Columns\TextColumn::make('patient.full_name')
+                    ->searchable()
+                    ->sortable(),
+                    Tables\Columns\IconColumn::make('status')
+                    ->boolean(),
+                    Tables\Columns\TextColumn::make('cancel_reason')
+                    ->label("Cause d'Annulation")
+                    ->searchable(),
+                    Tables\Columns\TextColumn::make('created_at')
+                        ->dateTime()
+                        ->sortable()
+                        ->toggleable(isToggledHiddenByDefault: true),
+                    Tables\Columns\TextColumn::make('updated_at')
+                        ->dateTime()
+                        ->sortable()
+                        ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

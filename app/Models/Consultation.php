@@ -4,19 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+ 
+use App\Observers\ConsultationObserver;
+
+#[ObservedBy([ConsultationObserver::class])]
 class Consultation extends Model
 {
     //
     protected $guarded = ['id'];
 
-    protected static function booted()
-    {
-        static::addGlobalScope('doctorsClinic', function ($query) {
-            if (auth()->check() && auth()->user()->clinic_id) {
-                $query->where('clinic_id', auth()->user()->clinic_id);
-            }
-        });
-    }
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope('doctorsClinic', function ($query) {
+    //         if (auth()->check() && auth()->user()->clinic_id) {
+    //             $query->where('clinic_id', auth()->user()->clinic_id);
+    //         }
+    //     });
+    // }
     protected $casts = [
         'treatement' => 'array',
         'date' => 'date',

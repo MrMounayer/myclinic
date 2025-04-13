@@ -6,6 +6,11 @@ use App\Models\Consultation;
 
 class ConsultationObserver
 {
+
+    public function creating(Consultation $consultation) : void
+    {
+        dd("hello ffrom creating");
+    }
     /**
      * Handle the Consultation "created" event.
      */

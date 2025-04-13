@@ -16,8 +16,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(Patient::class)->constrained();
-            $table->foreignIdFor(Clinic::class)->constrained();
-            $table->foreignIdFor(Doctor::class)->constrained();
             $table->string('cancel_reason')->nullable();
             $table->string('status')->default('pending'); // pending, confirmed, cancelled  
             $table->dateTime('date');

@@ -13,11 +13,7 @@ class Patient extends Model
 {
     //
     protected $guarded = ['id'];
-
-    public function doctor(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'doctor_id');
-    }
+    
     public function clinic(): BelongsTo
     {
         return $this->belongsTo(Clinic::class);

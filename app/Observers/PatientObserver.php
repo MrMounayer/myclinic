@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Patient;
-use Filament\Facades\Filament;
 
 
 class PatientObserver
@@ -16,12 +15,11 @@ class PatientObserver
     public function creating(Patient $patient): void
     {
         // Get the authenticated user
-        $user = Filament::auth()->user();
+        $user = auth()->user();
         
         // Set the clinic_id if user has a clinic
         if ($user && $user->clinic_id) {
             $patient->clinic_id = $user->clinic_id;
-            $patient->doctor_id = $user->id;
         }
     }
 

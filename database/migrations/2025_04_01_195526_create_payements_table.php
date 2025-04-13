@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\{Patient, Clinic};
+use App\Models\{Patient};
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +15,7 @@ return new class extends Migration
         Schema::create('payements', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(Patient::class);
-            $table->foreignIdFor(Clinic::class);
+            $table->foreignIdFor(Patient::class)->constrained();
             $table->date('date');
             $table->decimal('amount', 10, 2);
             $table->string('method')->default('cash'); // cash, credit_card, bank_transfer // completed, pending, failed
